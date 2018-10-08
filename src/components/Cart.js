@@ -3,7 +3,7 @@ import CartItem from './CartItem';
 
 class Cart extends Component {
   calculateTotal = (items) => {
-    return items.reduce((sum, item) => sum + item.price, 0)
+    return items.reduce((sum, item) => sum + (item.price * item.quantity), 0)
   }
 
   render() {
