@@ -1,10 +1,48 @@
 import React, { Component } from 'react';
+import Header               from './Header';
+import ProductList          from './ProductList';
+import data                 from '../data';
+
+/*
+  - Header
+    - Cart
+      - CartItem
+      - Checkout button
+  - ProductList
+    - Product
+      - (AddToCartButton)
+      - ProductForm / Button (edit)
+    - ProductForm / Button   (add)
+*/
 
 class Shop extends Component {
+  state = {
+    data,
+    cart: [],
+  }
+
+  handleAddToCart             =  (id) => {
+    let oldItem               =  this.state.cart.find(item => item.id === id);
+    let oldQuantity           =  0;
+    let newCart               =  this.state.cart.filter(item => item.id !== id);
+    if (oldItem) oldQuantity  =  oldItem.quantity;
+    let item                  =  { ...data.find(item => item.id === id), quantity: 1 + oldQuantity };
+    newCart                   =  [...newCart, item];
+    this.setState({ cart: newCart });
+    console.log(this.state.cart)
+  }
+
+  handleCheckout = () => {
+    console.log(this.state.cart)
+    this.setState({ cart: [] });
+    console.log(this.state.cart)
+  }
+
   render() {
     return (
       <div id="app">
-        <h1>Welcome!</h1>
+        <Header cart={this.state.cart} />
+        <ProductList data={this.state.data} handleAddToCart={this.handleAddToCart} handleCheckout={this.handleCheckout} />
       </div>
     );
   }
