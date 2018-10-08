@@ -29,13 +29,10 @@ class Shop extends Component {
     let item                  =  { ...data.find(item => item.id === id), quantity: 1 + oldQuantity };
     newCart                   =  [...newCart, item];
     this.setState({ cart: newCart });
-    console.log(this.state.cart)
   }
 
   handleCheckout = () => {
-    console.log(this.state.cart)
     this.setState({ cart: [] });
-    console.log(this.state.cart)
   }
 
   render() {
