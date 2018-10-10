@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-class ProductForm extends Component {
-  state = { fields: {...this.props} }
-  //   fields: {
-  //     id: this.props.id,
-  //     title: this.props.,
-  //     quantity: undefined,
-  //     price: undefined,
-  //   }
-  // }
+class EditForm extends Component {
+  state = {
+    fields: {
+      id: undefined,
+      title: '',
+      quantity: undefined,
+      price: undefined,
+    }
+  }
 
   handleChange = (e) => {
     const newFields = { ...this.state.fields, [e.target.name]: e.target.value, }
@@ -28,7 +28,7 @@ class ProductForm extends Component {
     return (
       <div className="add-form visible">
         <p><a className="button add-product-button">Add A Product</a></p>
-        <h3>{this.props.edit ? 'Edit' : 'Add'} Product</h3>
+        <h3>Add Product</h3>
         <form>
           <div className="input-group">
             <label htmlFor="product-name">Product Name</label>
@@ -67,7 +67,7 @@ class ProductForm extends Component {
             <a 
               className="button"
               onClick={this.formSubmit}
-            >{this.props.edit ? 'Update' : 'Add'}</a>
+            >Add</a>
             <a className="button">Cancel</a>
           </div>
         </form>
@@ -76,4 +76,4 @@ class ProductForm extends Component {
   }
 }
 
-export default ProductForm;
+export default EditForm;

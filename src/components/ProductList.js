@@ -5,13 +5,19 @@ import ProductForm          from './ProductForm';
 class ProductList extends Component {
   render() {
     const products = this.props.data.map(prod => (
-      <Product key={prod.id} handleAddToCart={this.props.handleAddToCart} {...prod} />
+      <Product 
+        key={prod.id} 
+        handleAddToCart={this.props.handleAddToCart} {...prod} 
+        handleDeleteClick={this.props.handleDeleteClick} 
+      />
     ));
     return (
       <div class="product-listing">
         <h2>Products</h2>
         {products}
-        <ProductForm />
+        <ProductForm 
+          handleFormSubmit={this.props.handleFormSubmit}
+        />
       </div>
     );
   }

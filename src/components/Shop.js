@@ -3,7 +3,7 @@ import Header               from './Header';
 import ProductList          from './ProductList';
 import data                 from '../data';
 
-/*
+/* Components
   - Header
     - Cart
       - CartItem
@@ -35,11 +35,48 @@ class Shop extends Component {
     this.setState({ cart: [] });
   }
 
+  handleDeleteClick = (id) => {
+    const newData = this.state.data.filter( product => product.id !== id );
+    
+    this.setState({
+      data: newData,
+    });
+  }
+
+  handleFormSubmit = (product) => {
+    let item = this.state.data.find(item => item.title === product.title);
+    console.log(item);
+    let newData;
+
+    if (item) {
+      newData = this.state.data.map((item) => {
+        if (item.title === product.title) {
+          return { ...product, id: item.id };
+        } else {
+          return item;
+        }
+      });
+    } else {
+      product.id = this.state.data[this.state.data.length - 1].id + 1;
+      newData = this.state.data.concat(product);
+    }
+
+    this.setState({
+      data: newData,
+    });
+  }
+
   render() {
     return (
       <div id="app">
         <Header cart={this.state.cart} />
-        <ProductList data={this.state.data} handleAddToCart={this.handleAddToCart} handleCheckout={this.handleCheckout} />
+        <ProductList 
+          data={this.state.data} 
+          handleAddToCart={this.handleAddToCart} 
+          handleCheckout={this.handleCheckout} 
+          handleDeleteClick={this.handleDeleteClick}
+          handleFormSubmit={this.handleFormSubmit}
+        />
       </div>
     );
   }
