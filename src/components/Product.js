@@ -20,8 +20,16 @@ class Product extends Component {
     });
   }
 
+  handleCancelClick = () => {
+    this.setState({
+      editFormOpen: false,
+    });
+  }
+
   render() {
-    const formOrButton = !this.state.editFormOpen ? <a className="button edit" onClick={this.handleEditClick}>Edit</a> : <ProductForm handleFormSubmit={this.props.handleFormSubmit} edit={true} {...this.props} />; 
+    const formOrButton = !this.state.editFormOpen 
+      ? <a className="button edit" onClick={this.handleEditClick}>Edit</a>
+      : <ProductForm handleFormSubmit={this.props.handleFormSubmit} edit={true} handleCancelClick={this.handleCancelClick} {...this.props} />; 
     return (
       <div className="product">
         <div className="product-details">

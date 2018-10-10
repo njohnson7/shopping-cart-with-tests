@@ -9,6 +9,7 @@ class ProductList extends Component {
         key={prod.id} 
         handleAddToCart={this.props.handleAddToCart} {...prod} 
         handleDeleteClick={this.props.handleDeleteClick} 
+        handleFormSubmit={this.props.handleFormSubmit}
       />
     ));
     return (

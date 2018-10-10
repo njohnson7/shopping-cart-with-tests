@@ -21,7 +21,7 @@ class Shop extends Component {
     cart: [],
   }
 
-  handleAddToCart             =  (id) => {
+  handleAddToCart = (id) => {
     let oldItem               =  this.state.cart.find(item => item.id === id);
     let oldQuantity           =  0;
     let newCart               =  this.state.cart.filter(item => item.id !== id);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class ProductForm extends Component {
   state = { fields: {...this.props} }
   //   fields: {
@@ -21,7 +22,12 @@ class ProductForm extends Component {
   formSubmit = (e) => {
     e.preventDefault();
 
+    this.props.handleCancelClick();
     this.props.handleFormSubmit(this.state.fields);
+  }
+
+  cancelClick = () => {
+    this.props.handleCancelClick();
   }
 
   render() {
@@ -65,10 +71,11 @@ class ProductForm extends Component {
 
           <div className="actions form-actions">
             <a 
+              id='submit-button'
               className="button"
               onClick={this.formSubmit}
             >{this.props.edit ? 'Update' : 'Add'}</a>
-            <a className="button">Cancel</a>
+            <a className="button" onClick={this.cancelClick}>Cancel</a>
           </div>
         </form>
       </div>
